@@ -6,6 +6,7 @@ run_no = input('Enter Clio RunID: ')
 result = get_run_pressure_data(run_no)
 
 tap_map = read_tap_map()
+
 clio_table = read_clio_table()
 
 output = generate_Cp_dataframe(result, tap_map)

@@ -2,7 +2,8 @@ import requests
 import pandas as pd
 import numpy as np
 
-# API for extracting oressure coefficient data from a given run
+
+# API for extracting pressure coefficient data from a given run
 def get_run_pressure_data(run_id):
     CLIO_API_BASE_URL = "http://en-cliows-prod/api"
     url = f"{CLIO_API_BASE_URL}/pressurecoefficient/{run_id}"
@@ -26,7 +27,9 @@ def read_tap_map():
 
 
 # Creates a data frame of X, Y, Z locations of pressure probes and teh Cp value for each probe
-# Iterates through the API output of all pressure channels and takes the Cp value for each channel specified in the tapping map
+
+# Iterates through the API output of all pressure channels and takes the Cp value for each channel
+# specified in the tapping map
 def generate_Cp_dataframe(result, tap_map):
     for sp in list(range(len(result))):
         Cp = []
