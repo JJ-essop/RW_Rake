@@ -22,7 +22,7 @@ def query_api(url, timeout=30, **kwargs):
 # Returns the tapping map for a given rake - currently hard coded
 def read_tap_map():
     tap_map = pd.read_csv(
-        r'G:\01 - Aero Projects\15 - WT Data\WTRakes\RW Onset Flow Rake\RW_Tap_Map.csv')
+        r'G:\01 - Aero Projects\15 - WT Data\WTRakes\Diffuser Rake\Diffuser_Rake_Tap_Map.csv')
     return tap_map
 
 
@@ -48,23 +48,20 @@ def generate_Cp_dataframe(result, tap_map):
         output.columns = ["X", "Y", "Z", "TotalPressureCoefficient"]
         output.head()
 
-        return output
-
-
-# Returns the clio table for the given map in order to get car conditions - currently hard coded until API is updated
-def read_clio_table():
-    clio_table = pd.read_csv(
-        r'G:\01 - Aero Projects\15 - WT Data\WTRakes\RW Onset Flow Rake\22D_v4.01_Clio_table.csv',
-        usecols=[1, 2, 5, 6, 7])
-    return clio_table
-
-
-# Exports Cp data frame to csv file for each set point, using the clio table for file naming convention
-def export_to_csv(result, clio_table, output):
-    for sp in list(range(len(result))):                     # iterate through all set points in the map
-        filename = f"FRH_{clio_table.Frh_tgt[sp]}__RRH_{clio_table.Rrh_tgt[sp]}__Yaw_{clio_table.Yaw_tgt[sp]}__Steer_{clio_table.Steer_tgt[sp]}__Roll_{clio_table.Roll_tgt[sp]}"
+        filename = f"FRH_{result[sp]['frh_tgt']}__RRH_{result[sp]['rrh_tgt']}__Yaw_{result[sp]['yaw_tgt']}__Steer_{result[sp]['steer_tgt']}__Roll_{result[sp]['roll_tgt']}"
         print(filename)
 
         output.to_csv(
-            r"G:\01 - Aero Projects\15 - WT Data\WTRakes\RW Onset Flow Rake\WT Results\22W20\R109418\%s.csv" % filename,
+            r"G:\01 - Aero Projects\15 - WT Data\WTRakes\Diffuser Rake\WT Results\22W36\R110612\%s.csv" % filename,
             sep=",", index=False)
+
+
+# Exports Cp data frame to csv file for each set point, using the clio table for file naming convention
+#def export_to_csv(result, output):
+    #for sp in list(range(len(result))):                     # iterate through all set points in the map
+        #filename = f"FRH_{result[sp]['frh_tgt']}__RRH_{result[sp]['rrh_tgt']}__Yaw_{result[sp]['yaw_tgt']}__Steer_{result[sp]['steer_tgt']}__Roll_{result[sp]['roll_tgt']}"
+        #print(filename)
+
+        #output.to_csv(
+            #r"G:\01 - Aero Projects\15 - WT Data\WTRakes\FWEP Rake\WT Results\22W36\110610\%s.csv" % filename,
+            #sep=",", index=False)
