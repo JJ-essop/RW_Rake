@@ -54,14 +54,3 @@ def generate_Cp_dataframe(result, tap_map):
         output.to_csv(
             r"G:\01 - Aero Projects\15 - WT Data\WTRakes\Diffuser Rake\WT Results\22W36\R110612\%s.csv" % filename,
             sep=",", index=False)
-
-
-# Exports Cp data frame to csv file for each set point, using the clio table for file naming convention
-#def export_to_csv(result, output):
-    #for sp in list(range(len(result))):                     # iterate through all set points in the map
-        #filename = f"FRH_{result[sp]['frh_tgt']}__RRH_{result[sp]['rrh_tgt']}__Yaw_{result[sp]['yaw_tgt']}__Steer_{result[sp]['steer_tgt']}__Roll_{result[sp]['roll_tgt']}"
-        #print(filename)
-
-        #output.to_csv(
-            #r"G:\01 - Aero Projects\15 - WT Data\WTRakes\FWEP Rake\WT Results\22W36\110610\%s.csv" % filename,
-            #sep=",", index=False)
