@@ -11,4 +11,4 @@ tap_map, ptap_path = read_tap_map()
 
 export_path = generate_Cp_dataframe(result, tap_map, ptap_path, run_no)
 
-subprocess.Popen(r'explorer /select,"%s"'%export_path)
+subprocess.Popen(r'explorer /select,"%s"' %export_path)
